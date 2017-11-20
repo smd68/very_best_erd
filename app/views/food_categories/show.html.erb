@@ -23,3 +23,34 @@
     </div>
   </div>
 </div>
+
+<!-- A Food category has many dishes -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Dishes
+      </li>
+
+      <% @food_category.dishes.each do |dish_detail| %>
+        <li class="list-group-item">
+          <a href="/dish_details/<%= dish_detail.id %>">
+            <%= dish_detail.dish %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/dish_details/<%= dish_detail.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/dish_details/<%= dish_detail.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_dish_detail/<%= dish_detail.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
