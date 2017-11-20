@@ -5,6 +5,10 @@ class VenuesDetail < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :favorite,
+             :through => :venue,
+             :source => :favorites
+
   # Validations
 
 end

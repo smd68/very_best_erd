@@ -9,6 +9,10 @@ class Favorite < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :venues_detail,
+             :through => :venue,
+             :source => :venues_details
+
   # Validations
 
 end
