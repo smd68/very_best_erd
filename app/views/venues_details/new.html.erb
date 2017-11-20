@@ -33,7 +33,7 @@
           Venue
         </label>
 
-        <input type="text" id="venue_id" name="venue_id" placeholder="Venue" class="form-control" value="<%= @venues_detail.venue_id %>">
+        <%= select_tag(:venue_id, options_from_collection_for_select(Venue.all, :id, :restaurant_name, @venues_detail.venue_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
