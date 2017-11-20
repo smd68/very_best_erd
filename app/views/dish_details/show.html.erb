@@ -9,7 +9,13 @@
       <dd><%= @dish_detail.dish %></dd>
 
       <dt>Category</dt>
-      <dd><%= @dish_detail.category_id %></dd>
+      <dd>
+        <% if @dish_detail.category.present? %>
+          <a href="/food_categories/<%= @dish_detail.category_id %>">
+            <%= @dish_detail.category.category_name %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

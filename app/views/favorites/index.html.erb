@@ -17,9 +17,27 @@
 
       <% @favorites.each do |favorite| %>
       <tr>
-        <td><%= favorite.venue.restaurant_name %></td>
-        <td><%= favorite.user.email %></td>
-        <td><%= favorite.dish.created_at %></td>
+        <td>
+          <% if favorite.venue.present? %>
+            <a href="/venues/<%= favorite.venue.id %>">
+              <%= favorite.venue.restaurant_name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if favorite.user.present? %>
+            <a href="/users/<%= favorite.user.id %>">
+              <%= favorite.user.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if favorite.dish.present? %>
+            <a href="/dishes/<%= favorite.dish.id %>">
+              <%= favorite.dish.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">Show</a>
           <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">Edit</a>
