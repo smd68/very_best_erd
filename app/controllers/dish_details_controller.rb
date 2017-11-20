@@ -1,6 +1,7 @@
 class DishDetailsController < ApplicationController
   def index
-    @dish_details = DishDetail.page(params[:page]).per(10)
+    @q = DishDetail.ransack(params[:q])
+    @dish_details = @q.result(:distinct => true).includes(:best_dishes, :category).page(params[:page]).per(10)
 
     render("dish_details/index.html.erb")
   end

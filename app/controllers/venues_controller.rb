@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
   def index
-    @venues = Venue.page(params[:page]).per(10)
+    @q = Venue.ransack(params[:q])
+    @venues = @q.result(:distinct => true).includes(:favorites, :venues_details, :users, :dishes).page(params[:page]).per(10)
     @location_hash = Gmaps4rails.build_markers(@venues.where.not(:location_latitude => nil)) do |venue, marker|
       marker.lat venue.location_latitude
       marker.lng venue.location_longitude

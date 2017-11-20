@@ -1,6 +1,7 @@
 class VenuesDetailsController < ApplicationController
   def index
-    @venues_details = VenuesDetail.page(params[:page]).per(10)
+    @q = VenuesDetail.ransack(params[:q])
+    @venues_details = @q.result(:distinct => true).includes(:venue, :favorite).page(params[:page]).per(10)
 
     render("venues_details/index.html.erb")
   end
