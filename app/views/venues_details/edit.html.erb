@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @venues_detail.errors.any? %>
+  <% @venues_detail.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Venues Detail #<%= @venues_detail.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_venues_detail/<%= @venues_detail.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for dish_id -->
+      <div class="form-group">
+        <label for="dish_id" class="control-label">
+          Dish
+        </label>
+
+        <input type="text" id="dish_id" name="dish_id" placeholder="Dish" class="form-control" value="<%= @venues_detail.dish_id %>">
+      </div>
+
+      <!-- Label and input for venue_id -->
+      <div class="form-group">
+        <label for="venue_id" class="control-label">
+          Venue
+        </label>
+
+        <input type="text" id="venue_id" name="venue_id" placeholder="Venue" class="form-control" value="<%= @venues_detail.venue_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Venues Detail
+      </button>
+      or
+      <a href="/venues_details/<%= @venues_detail.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
